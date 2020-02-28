@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Modifications>
+  <Modification name="2'-Methylation">
+    <ChemicalFormula>CH2</ChemicalFormula>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+  </Modification>
+  
+   <Modification name="weird">
+    <ChemicalFormula>Fe-1</ChemicalFormula>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+    <ModificationSite>ThreePrimeTerminus</ModificationSite>
+  </Modification>
+    
+  <Modification name="Phosphorylation">
+    <ChemicalFormula>HPO3</ChemicalFormula>
+    <ModificationSite>FivePrimeTerminus</ModificationSite>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+    <ModificationSite>ThreePrimeTerminus</ModificationSite>
+    <AlternativeName>Phospho</AlternativeName>
+  </Modification>
+
+
+
+
+</Modifications>
