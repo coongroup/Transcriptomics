@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Modifications>
   <Modification name="2'-Methylation">
     <ChemicalFormula>CH2</ChemicalFormula>
@@ -7,7 +7,25 @@
     <ModificationSite>G</ModificationSite>
     <ModificationSite>U</ModificationSite>
   </Modification>
-  
+
+  <Modification name="yW">
+    <ChemicalFormula>C11H15O4N</ChemicalFormula>
+    <ModificationSite>G</ModificationSite>
+  </Modification>
+
+  <Modification name="m22G">
+    <ChemicalFormula>C2H4</ChemicalFormula>
+    <ModificationSite>G</ModificationSite>
+  </Modification>
+	
+<Modification name="Phosphorothioate">
+    <ChemicalFormula>O-1S1</ChemicalFormula>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+  </Modification>
+
    <Modification name="weird">
     <ChemicalFormula>Fe-1</ChemicalFormula>
     <ModificationSite>A</ModificationSite>
@@ -28,7 +46,25 @@
     <AlternativeName>Phospho</AlternativeName>
   </Modification>
 
+  <Modification name="Dihydro">
+    <ChemicalFormula>H2</ChemicalFormula>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+  </Modification>
 
+  <Modification name="Pseudouridine">
+    <ChemicalFormula>H</ChemicalFormula>
+    <ModificationSite>U</ModificationSite>
+  </Modification>
 
+  <Modification name="2'-Fluorine">
+    <ChemicalFormula>O-1H-1F1</ChemicalFormula>
+    <ModificationSite>A</ModificationSite>
+    <ModificationSite>C</ModificationSite>
+    <ModificationSite>G</ModificationSite>
+    <ModificationSite>U</ModificationSite>
+  </Modification>
 
 </Modifications>
