@@ -1,4 +1,5 @@
 ﻿// Copyright 2019 Dain R. Brademan
+// Modified 2021 Qiuwen Quan
 // 
 // This file (Nucleotide.cs) is part of CSMSL.Transcriptomics.
 // 
@@ -24,7 +25,7 @@ namespace CSMSL.Transcriptomics
 {
     public class Nucleotide : INucleotide
     {
-        #region The Four Common RNA Bases
+        #region The Four Common RNA and DNA Bases
         /*
         public static Nucleotide Adenosine { get; private set; }
 
@@ -39,7 +40,13 @@ namespace CSMSL.Transcriptomics
         public static Nucleotide GuanineBase { get; private set; }
         public static Nucleotide UracilBase { get; private set; }
 
-        #endregion The Four Common RNA Bases
+        //nucleotides for DNA: modified December 3, 2021
+        public static Nucleotide DeoxyAdenineBase { get; private set; } //For DNA
+        public static Nucleotide DeoxyCytosineBase { get; private set; } //For DNA
+        public static Nucleotide DeoxyGuanineBase { get; private set; } //For DNA
+        public static Nucleotide DeoxyThymineBase { get; private set; } //For DNA
+
+        #endregion The Four Common RNA and DNA Bases
 
         private static readonly Dictionary<string, Nucleotide> Residues;
 
@@ -93,20 +100,27 @@ namespace CSMSL.Transcriptomics
         {
             Residues = new Dictionary<string, Nucleotide>(66);
             ResiduesByLetter = new Nucleotide['z' + 1]; //Make it big enough for all the Upper and Lower characters
-            /*
+            
+            /* previous code by DRB
             Adenosine = AddResidue("Adenosine", 'A', "Ade", "C10H12N5O6P");
             Cytidine = AddResidue("Cytidine", 'C', "Cyt", "C9H12N3O7P");
             Guanosine = AddResidue("Guanosine", 'G', "Gua", "C10H12N5O7P");
             Uridine = AddResidue("Uridine", 'U', "Ura", "C9H11N2O8P");
             */
-            //added: the actual base chemical formula after bonding with the sugar
-            //the sugar and phosphate has a chemical formula of C5H8O6P1
+
+            // actual base chemical formula after bonding with the sugar
+            // the sugar and phosphate has a chemical formula of C5H8O6P1
             AdenineBase= AddResidue("Adenine", 'A', "Ade", "C5H4N5");
             CytosineBase = AddResidue("Cytosine", 'C', "Cyt", "C4H4N3O1");
             GuanineBase= AddResidue("Guanine", 'G', "Gua", "C5H4N5O1");
             UracilBase= AddResidue("Uracil", 'U', "Ura", "C4H3N2O2");
 
-
+            // DNA bases which have the same mass as the ones above
+            // however, naming to deoxy- to distinguish DNA nucleotide mass calculation from RNA
+            DeoxyAdenineBase = AddResidue("DeoxyAdenine", 'B', "dAde", "C5H4N5");//for DNA
+            DeoxyCytosineBase = AddResidue("DeoxyCytosine", 'D', "dCyt", "C4H4N3O1");//for DNA
+            DeoxyGuanineBase = AddResidue("DeoxyGuanine", 'H', "dGua", "C5H4N5O1");//for DNA
+            DeoxyThymineBase = AddResidue("DeoxyThymine", 'V', "dThy", "C5H5N2O2");//for DNA
         }
 
         private static void AddResidueToDictionary(Nucleotide residue)
@@ -129,8 +143,17 @@ namespace CSMSL.Transcriptomics
             Letter = oneLetterAbbreviation;
             Symbol = threeLetterAbbreviation;
             ChemicalFormula = chemicalFormula;
-            //added: the sugarAndPhosphate and edited the calculation for monoisoptic mass
-            sugarAndPhosphate = new ChemicalFormula("C5H8O6P1");
+
+            // calculation for monoisoptic mass of DNA and RNA
+            if (Name.Equals("DeoxyAdenine")|| Name.Equals("DeoxyCytosine") || Name.Equals("DeoxyGuanine") || Name.Equals("DeoxyThymine"))
+            {
+                sugarAndPhosphate = new ChemicalFormula("C5H8O5P1"); //DNA sugar phosphate backbone (one less oxygen than RNA)
+            }
+            else
+            {
+                sugarAndPhosphate = new ChemicalFormula("C5H8O6P1"); //RNA sugar phosphate backbone
+            }
+            
             MonoisotopicMass = ChemicalFormula.MonoisotopicMass+sugarAndPhosphate.MonoisotopicMass;
         }
 
