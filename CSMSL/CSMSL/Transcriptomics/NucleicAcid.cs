@@ -1,4 +1,5 @@
 ﻿// Copyright 2019 Dain R. Brademan
+// Modified 2020 Qiuwen Quan
 // 
 // This file (NucleicAcid.cs) is part of CSMSL.Transcriptomics.
 // 
@@ -216,7 +217,9 @@ namespace CSMSL.Transcriptomics
         /// </summary>
         public double MonoisotopicMass { get; private set; }
 
-        //added: make a copy of the nucleic acid array todo: write code to copy it
+        /// <summary>
+        /// Returns a copy of the nucleic acid array, used for -base mass calculations.
+        /// </summary>
         public Nucleotide[] NucleicAcidArray
         {
             get { return _nucleicAcids; }
